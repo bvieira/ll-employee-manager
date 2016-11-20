@@ -1,13 +1,16 @@
 # ll-employee-manager
 
 ## build
+### build docker images
 docker-compose build
-docker-compose run web python manage.py makemigrations
+### execute migrations
 docker-compose run web python manage.py migrate
+### create user
+docker-compose run web python manage.py createsuperuser
 
 ## run
 docker-compose up
 
-## django admin
-### create user
-docker-compose run web python manage.py createsuperuser
+## api
+
+## admin
