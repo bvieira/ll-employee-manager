@@ -4,7 +4,7 @@ from django.forms import ModelForm
 
 from restless.dj import DjangoResource
 from restless.preparers import FieldsPreparer
-from restless.exceptions import BadRequest
+from restless.exceptions import BadRequest, NotFound
 
 from employees.models import Employee, Department
 
@@ -37,16 +37,18 @@ class EmployeeResource(DjangoResource):
     def wrap_list_response(self, data):
         return data
 
-    def validate_employee(self):
+    def validate_employee(self, **kwargs):
         dform = DepartmentForm({'name': self.data['department']})
         if not dform.is_valid():
             raise BadRequest(dform.errors)
 
-        eform = EmployeeForm(self.data)
+        if 'instance' in kwargs:
+            eform = EmployeeForm(self.data, instance=kwargs['instance'])
+        else:
+            eform = EmployeeForm(self.data)
         if not eform.is_valid():
             raise BadRequest(eform.errors)
         return (eform.cleaned_data, dform.cleaned_data)
-            
 
     def is_authenticated(self):
         if self.request_method() == 'GET':
@@ -76,11 +78,12 @@ class EmployeeResource(DjangoResource):
         )
 
     def update(self, pk):
-        eclean, dclean = self.validate_employee()
         try:
             emp = Employee.objects.get(id=pk)
         except Employee.DoesNotExist:
-            emp = Employee()
+            raise NotFound("employee id:[%s] not found" % (pk))
+
+        eclean, dclean = self.validate_employee(instance=emp)
 
         emp.name = eclean['name']
         emp.email = eclean['email']
