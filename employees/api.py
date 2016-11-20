@@ -50,6 +50,9 @@ class EmployeeResource(DjangoResource):
             
 
     def is_authenticated(self):
+        if self.request_method() == 'GET':
+            return True
+
         if 'HTTP_AUTHORIZATION' in self.request.META:
             auth = self.request.META['HTTP_AUTHORIZATION'].split()
             if len(auth) == 2 and auth[0].lower() == "basic":
