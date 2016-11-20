@@ -27,6 +27,7 @@ $ docker-compose logs -f
 
 # Admin
 Admin is provided by django, and can be accessed on path '/admin', to login use user/password creating during the [Build and run](#build-and-run)
+
 On admin you will be able to create/view/edit users (to access the API), employees and departments.
 
 Access:
