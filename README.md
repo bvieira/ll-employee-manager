@@ -172,7 +172,7 @@ update an employee by id
 |-------------------|-----------------------|
 | 202             | updated with success  |
 | 404             | id not found  |
-| 400             | employee content is invalid |
+| 400             | id or employee content is invalid |
 
 ```sh
 $ curl -v -X PUT "localhost:8000/employee/1/" -d '{"department": "Arquitetura", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
@@ -210,6 +210,7 @@ remove an employee by id
 |-------------------|-----------------------|
 | 204             | removed with success  |
 | 404             | id not found  |
+| 400             | id is invalid |
 
 
 ```sh
