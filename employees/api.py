@@ -38,15 +38,14 @@ class EmployeeResource(DjangoResource):
         return data
 
     def validate_employee(self):
-        depForm = DepartmentForm(self.data)
-        if not depForm.is_valid():
-            raise BadRequest(depForm.errors)
+        dform = DepartmentForm({'name': self.data['department']})
+        if not dform.is_valid():
+            raise BadRequest(dform.errors)
 
-        emplForm = EmployeeForm(self.data)
-        if not emplForm.is_valid():
-            raise BadRequest(emplForm.errors)
-
-        return (emplForm.cleaned_data, depForm.cleaned_data)
+        eform = EmployeeForm(self.data)
+        if not eform.is_valid():
+            raise BadRequest(eform.errors)
+        return (eform.cleaned_data, dform.cleaned_data)
             
 
     def is_authenticated(self):
@@ -69,24 +68,24 @@ class EmployeeResource(DjangoResource):
         return Employee.objects.get(id=pk)
 
     def create(self):
-        cleanEmployee, cleanDep = self.validate_employee()
+        eclean, dclean = self.validate_employee()
         return Employee.objects.create(
-            name = cleanEmployee['name'],
-            email = cleanEmployee['email'],
-            department = self.get_department(cleanDep['name'])
+            name = eclean['name'],
+            email = eclean['email'],
+            department = self.get_department(dclean['name'])
         )
 
     def update(self, pk):
-        cleanEmployee, cleanDep = self.validate_employee()
+        eclean, dclean = self.validate_employee()
         try:
             emp = Employee.objects.get(id=pk)
         except Employee.DoesNotExist:
             emp = Employee()
 
-        emp.name = cleanEmployee['name']
-        emp.email = cleanEmployee['email']
-        if cleanDep['department'] != emp.department.name:
-            emp.department = self.get_department(cleanDep['name'])
+        emp.name = eclean['name']
+        emp.email = eclean['email']
+        if dclean['name'] != emp.department.name:
+            emp.department = self.get_department(dclean['name'])
         emp.save()
         return emp
 
