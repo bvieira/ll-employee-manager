@@ -6,7 +6,6 @@ from restless.exceptions import BadRequest
 
 from employees.models import Employee, Department
 
-
 class EmployeeForm(ModelForm):
     class Meta(object):
         model = Employee
@@ -32,6 +31,9 @@ class EmployeeResource(DjangoResource):
             return Department.objects.get(name = depName)
         except Department.DoesNotExist:
             return Department.objects.create(name = depName)
+
+    def wrap_list_response(self, data):
+        return data
 
     def validate_employee(self):
         depForm = DepartmentForm(self.data)
