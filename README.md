@@ -17,7 +17,9 @@ $ docker-compose run web python manage.py createsuperuser
 ```
 
 # Run
-docker-compose up
+```sh
+$ docker-compose up
+```
 
 # API
 - [List Employees](#list-employee)
