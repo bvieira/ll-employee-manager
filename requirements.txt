@@ -1,0 +1,3 @@
+Django
+restless
+psycopg2
