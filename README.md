@@ -56,6 +56,7 @@ returns a list of exisisting employees
 |-------------------|-----------------------|
 | 200             | success  |
 
+### Example:
 ```sh
 $ curl -v "localhost:8000/employee/"
 > GET /employee/ HTTP/1.1
@@ -94,6 +95,7 @@ returns employee by id
 | 404             | id not found  |
 | 400             | id is invalid |
 
+### Example:
 ```sh
 $ curl -v "localhost:8000/employee/1/"
 > GET /employee/1/ HTTP/1.1
@@ -129,6 +131,7 @@ create a new employee and returns it
 | 201             | created with success  |
 | 400             | employee content is invalid |
 
+### Example:
 ```sh
 $ curl -v -X POST "localhost:8000/employee/" -d '{"department": "Tecnologia", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
 > POST /employee/ HTTP/1.1
@@ -174,6 +177,7 @@ update an employee by id
 | 404             | id not found  |
 | 400             | id or employee content is invalid |
 
+### Example:
 ```sh
 $ curl -v -X PUT "localhost:8000/employee/1/" -d '{"department": "Arquitetura", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
 > PUT /employee/1/ HTTP/1.1
@@ -212,7 +216,7 @@ remove an employee by id
 | 404             | id not found  |
 | 400             | id is invalid |
 
-
+### Example:
 ```sh
 $ curl -v -X DELETE "localhost:8000/employee/1/" -u user:userp123
 > DELETE /employee/1/ HTTP/1.1
