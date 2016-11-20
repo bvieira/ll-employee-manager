@@ -1,3 +1,5 @@
+import base64
+from django.contrib.auth import authenticate
 from django.forms import ModelForm
 
 from restless.dj import DjangoResource
@@ -48,21 +50,14 @@ class EmployeeResource(DjangoResource):
             
 
     def is_authenticated(self):
-        #TODO fix auth
-        # Open everything wide!
-        # DANGEROUS, DO NOT DO IN PRODUCTION.
-        return True
-
-        # Alternatively, if the user is logged into the site...
-        # return self.request.user.is_authenticated()
-
-        # Alternatively, you could check an API key. (Need a model for this...)
-        # from myapp.models import ApiKey
-        # try:
-        #     key = ApiKey.objects.get(key=self.request.GET.get('api_key'))
-        #     return True
-        # except ApiKey.DoesNotExist:
-        #     return False
+        if 'HTTP_AUTHORIZATION' in self.request.META:
+            auth = self.request.META['HTTP_AUTHORIZATION'].split()
+            if len(auth) == 2 and auth[0].lower() == "basic":
+                username, password = base64.b64decode(auth[1]).decode('utf-8').split(':')
+                user = authenticate(username=username, password=password)
+                if user is not None and user.is_active:
+                    return True
+        return False
 
     def list(self):
         return Employee.objects.all()
