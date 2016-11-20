@@ -35,6 +35,11 @@ Access:
 localhost:8000/admin/
 ```
 
+# Tests
+```sh
+$ docker-compose run web python manage.py test
+```
+
 # API
 - [List Employees](#list-employee)
 - [Get Employee](#get-employee)
