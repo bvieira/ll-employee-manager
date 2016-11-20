@@ -56,22 +56,22 @@ returns a list of exisisting employees
 |-------------------|-----------------------|
 | 200             | success  |
 
-	```sh
-	$ curl -v "localhost:8000/employee/"
-	> GET /employee/ HTTP/1.1
-	> Host: localhost:8000
-	> User-Agent: curl/7.43.0
-	> Accept: */*
-	>
-	< HTTP/1.0 200 OK
-	< Date: Sun, 20 Nov 2016 15:11:16 GMT
-	< Server: WSGIServer/0.2 CPython/3.5.2
-	< X-Frame-Options: SAMEORIGIN
-	< Content-Type: application/json
-	<
-	[{"department": "Tecnologia", "email": "user1@email.com", "name": "user1", "id": 1}, {"department": "Tecnologia", "email": "user2@email.com", "name": "user2", "id": 2}]
-	
-	```
+```sh
+$ curl -v "localhost:8000/employee/"
+> GET /employee/ HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.43.0
+> Accept: */*
+>
+< HTTP/1.0 200 OK
+< Date: Sun, 20 Nov 2016 15:11:16 GMT
+< Server: WSGIServer/0.2 CPython/3.5.2
+< X-Frame-Options: SAMEORIGIN
+< Content-Type: application/json
+<
+[{"department": "Tecnologia", "email": "user1@email.com", "name": "user1", "id": 1}, {"department": "Tecnologia", "email": "user2@email.com", "name": "user2", "id": 2}]
+
+```
 
 ## Get Employee
 returns employee by id
@@ -94,22 +94,22 @@ returns employee by id
 | 404             | id not found  |
 | 400             | id is invalid |
 
-	```sh
-	$ curl -v "localhost:8000/employee/1/"
-	> GET /employee/1/ HTTP/1.1
-	> Host: localhost:8000
-	> User-Agent: curl/7.43.0
-	> Accept: */*
-	>
-	< HTTP/1.0 200 OK
-	< Date: Sun, 20 Nov 2016 15:21:07 GMT
-	< Server: WSGIServer/0.2 CPython/3.5.2
-	< X-Frame-Options: SAMEORIGIN
-	< Content-Type: application/json
-	<
-	{"department": "Tecnologia", "email": "user1@email.com", "name": "user1", "id": 1}
-	
-	```
+```sh
+$ curl -v "localhost:8000/employee/1/"
+> GET /employee/1/ HTTP/1.1
+> Host: localhost:8000
+> User-Agent: curl/7.43.0
+> Accept: */*
+>
+< HTTP/1.0 200 OK
+< Date: Sun, 20 Nov 2016 15:21:07 GMT
+< Server: WSGIServer/0.2 CPython/3.5.2
+< X-Frame-Options: SAMEORIGIN
+< Content-Type: application/json
+<
+{"department": "Tecnologia", "email": "user1@email.com", "name": "user1", "id": 1}
+
+```
 
 ## Create Employee
 create a new employee and returns it
@@ -129,25 +129,25 @@ create a new employee and returns it
 | 201             | created with success  |
 | 400             | employee content is invalid |
 
-	```sh
-	$ curl -v -X POST "localhost:8000/employee/" -d '{"department": "Tecnologia", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
-	> POST /employee/ HTTP/1.1
-	> Host: localhost:8000
-	> Authorization: Basic dXNlcjp1c2VycDEyMw==
-	> User-Agent: curl/7.43.0
-	> Accept: */*
-	> Content-Type: application/json
-	> Content-Length: 73
-	>
-	< HTTP/1.0 201 Created
-	< Date: Sun, 20 Nov 2016 20:12:38 GMT
-	< Server: WSGIServer/0.2 CPython/3.5.2
-	< Content-Type: application/json
-	< X-Frame-Options: SAMEORIGIN
-	<
-	{"department": "Tecnologia", "email": "user1@email.com", "id": 1, "name": "user1"}
-	
-	```
+```sh
+$ curl -v -X POST "localhost:8000/employee/" -d '{"department": "Tecnologia", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
+> POST /employee/ HTTP/1.1
+> Host: localhost:8000
+> Authorization: Basic dXNlcjp1c2VycDEyMw==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 73
+>
+< HTTP/1.0 201 Created
+< Date: Sun, 20 Nov 2016 20:12:38 GMT
+< Server: WSGIServer/0.2 CPython/3.5.2
+< Content-Type: application/json
+< X-Frame-Options: SAMEORIGIN
+<
+{"department": "Tecnologia", "email": "user1@email.com", "id": 1, "name": "user1"}
+
+```
 
 ## Update Employee
 update an employee by id
@@ -174,25 +174,25 @@ update an employee by id
 | 404             | id not found  |
 | 400             | employee content is invalid |
 
-	```sh
-	$ curl -v -X PUT "localhost:8000/employee/1/" -d '{"department": "Arquitetura", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
-	> PUT /employee/1/ HTTP/1.1
-	> Host: localhost:8000
-	> Authorization: Basic dXNlcjp1c2VycDEyMw==
-	> User-Agent: curl/7.43.0
-	> Accept: */*
-	> Content-Type: application/json
-	> Content-Length: 74
-	>
-	< HTTP/1.0 202 Accepted
-	< Date: Sun, 20 Nov 2016 21:34:28 GMT
-	< Server: WSGIServer/0.2 CPython/3.5.2
-	< X-Frame-Options: SAMEORIGIN
-	< Content-Type: application/json
-	<
-	{"id": 1, "name": "user1", "email": "user1@email.com", "department": "Arquitetura"}
-	
-	```
+```sh
+$ curl -v -X PUT "localhost:8000/employee/1/" -d '{"department": "Arquitetura", "email": "user1@email.com", "name": "user1"}' -u user:userp123 -H "Content-Type: application/json"
+> PUT /employee/1/ HTTP/1.1
+> Host: localhost:8000
+> Authorization: Basic dXNlcjp1c2VycDEyMw==
+> User-Agent: curl/7.43.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 74
+>
+< HTTP/1.0 202 Accepted
+< Date: Sun, 20 Nov 2016 21:34:28 GMT
+< Server: WSGIServer/0.2 CPython/3.5.2
+< X-Frame-Options: SAMEORIGIN
+< Content-Type: application/json
+<
+{"id": 1, "name": "user1", "email": "user1@email.com", "department": "Arquitetura"}
+
+```
 
 ## Remove Employee
 remove an employee by id
@@ -212,22 +212,22 @@ remove an employee by id
 | 404             | id not found  |
 
 
-	```sh
-	$ curl -v -X DELETE "localhost:8000/employee/1/" -u user:userp123
-	> DELETE /employee/1/ HTTP/1.1
-	> Host: localhost:8000
-	> Authorization: Basic dXNlcjp1c2VycDEyMw==
-	> User-Agent: curl/7.43.0
-	> Accept: */*
-	>
-	< HTTP/1.0 204 No Content
-	< Date: Sun, 20 Nov 2016 21:38:39 GMT
-	< Server: WSGIServer/0.2 CPython/3.5.2
-	< X-Frame-Options: SAMEORIGIN
-	< Content-Type: application/json
-	<
-	
-	```
+```sh
+$ curl -v -X DELETE "localhost:8000/employee/1/" -u user:userp123
+> DELETE /employee/1/ HTTP/1.1
+> Host: localhost:8000
+> Authorization: Basic dXNlcjp1c2VycDEyMw==
+> User-Agent: curl/7.43.0
+> Accept: */*
+>
+< HTTP/1.0 204 No Content
+< Date: Sun, 20 Nov 2016 21:38:39 GMT
+< Server: WSGIServer/0.2 CPython/3.5.2
+< X-Frame-Options: SAMEORIGIN
+< Content-Type: application/json
+<
+
+```
 
 
 # Schema
