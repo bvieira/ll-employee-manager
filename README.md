@@ -121,6 +121,8 @@ $ curl -v "localhost:8000/employee/1/"
 ## Create Employee
 create a new employee and returns it
 
+* uses basic auth, create user on [admin](#admin)
+
 ### Request:
 `POST` /employee/
 
@@ -159,6 +161,8 @@ $ curl -v -X POST "localhost:8000/employee/" -d '{"department": "Tecnologia", "e
 
 ## Update Employee
 update an employee by id
+
+* uses basic auth, create user on [admin](#admin)
 
 
 ### Request:
@@ -205,6 +209,8 @@ $ curl -v -X PUT "localhost:8000/employee/1/" -d '{"department": "Arquitetura", 
 
 ## Remove Employee
 remove an employee by id
+
+* uses basic auth, create user on [admin](#admin)
 
 ### Request:
 `DELETE` /employee/:id/
