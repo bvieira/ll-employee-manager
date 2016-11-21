@@ -1,6 +1,19 @@
 ll-employee-manager
 ======================
 
+# Technologies
+List of technologies that I chose to work:
+* Python - required for coding test
+* Django - required for coding test
+* restless - lightweight REST miniframework from Tastypie's author, very simple and easy to use
+* psycopg2 - PostgreSQL adapter, relational database fits well on this kind of problem
+* coverage - simple tool for test coverage
+* docker/docker-compose - container, helps to guarantees the environment creation and isolates the development
+
+# Notes
+* I choose to create simple numerical id for each employee and use it on API when a unique employee was needed, but on a distributed system or on a more complex one a alpha-numeric and non-sequential id would be a better choice (it would make easier to migrate to a nosql database as well)
+* I used basic auth on database 'update' methods (PUT/POST/DELETE) to keep it simple, but it could (and should) be a better one like oauth
+
 # Build and run
 Build docker images and start up
 ```sh
