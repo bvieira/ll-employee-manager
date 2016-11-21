@@ -8,6 +8,8 @@ List of technologies that I chose to work:
 * restless - lightweight REST miniframework from Tastypie's author, very simple and easy to use
 * psycopg2 - PostgreSQL adapter, relational database fits well on this kind of problem
 * coverage - simple tool for test coverage
+* gunicorn - http server, changed so I could disable debug
+* nginx - reverse proxy and webserver, serve static content after disabling debug
 * docker/docker-compose - container, helps to guarantees the environment creation and isolates the development
 
 # Notes
