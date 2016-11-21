@@ -36,8 +36,18 @@ localhost:8000/admin/
 ```
 
 # Tests
+Run test
 ```sh
 $ docker-compose run web python manage.py test
+```
+Create coverage report
+```sh
+docker-compose run web coverage run manage.py test
+```
+
+Report results
+```sh
+docker-compose run web coverage report -m
 ```
 
 # API
