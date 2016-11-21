@@ -63,15 +63,18 @@ class EmployeeResource(DjangoResource):
                     return True
         return False
 
+    #list employees
     def list(self):
         return Employee.objects.all()
 
+    #get employee by id
     def detail(self, pk):
         if not pk.isdigit():
             raise BadRequest("id:[%s] is invalid" %(pk))
-            
+
         return Employee.objects.get(id=pk)
 
+    #create employee
     def create(self):
         eclean, dclean = self.validate_employee()
         return Employee.objects.create(
@@ -80,6 +83,7 @@ class EmployeeResource(DjangoResource):
             department = self.get_department(dclean['name'])
         )
 
+    #update employee by id
     def update(self, pk):
         if not pk.isdigit():
             raise BadRequest("id:[%s] is invalid" %(pk))
@@ -98,6 +102,7 @@ class EmployeeResource(DjangoResource):
         emp.save()
         return emp
 
+    #delete employee by id
     def delete(self, pk):
         if not pk.isdigit():
             raise BadRequest("id:[%s] is invalid" %(pk))
