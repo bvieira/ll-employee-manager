@@ -1,13 +1,24 @@
 version: '2'
 services:
+ nginx:
+   image: nginx:latest
+   ports:
+     - "8000:8000"
+   volumes:
+     - ./src:/src
+     - ./config/nginx:/etc/nginx/conf.d
+     - ./static:/static
+   depends_on:
+     - web
  db:
    image: postgres
  web:
    build: .
-   command: python manage.py runserver 0.0.0.0:8000
-   volumes:
-     - .:/code
-   ports:
-     - "8000:8000"
+   command: bash -c "python manage.py makemigrations && python manage.py migrate && gunicorn employeemanager.wsgi -b 0.0.0.0:8000"
    depends_on:
      - db
+   volumes:
+     - ./src:/src
+     - ./static:/src/static
+   expose:
+      - "8000"

@@ -1,7 +1,8 @@
 FROM python:3.5
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
-ADD requirements.txt /code/
-RUN pip install -r requirements.txt
-ADD . /code/
+RUN mkdir /config  
+ADD config/requirements.txt /config/ 
+RUN pip install -r /config/requirements.txt
+RUN mkdir /src
+WORKDIR /src
+ADD src/ /src/
